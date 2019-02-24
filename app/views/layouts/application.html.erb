@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers2</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+
+
+  <body>
+    <!-- この隙間に書くだけで勝手にヘッダーを形成する -->
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <span class="title-color">Bookers</span>
+          <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
+                <!-- ログインしているとき -->
+                <li>
+                  <%= link_to "Home", user_path(current_user.id),  class: "glyphicon glyphicon-home home" %>
+                </li>
+                <li>
+                  <!-- URLにIDがないから -->
+                  <%= link_to "Users", users_path(current_user.id),
+                  class: "glyphicon glyphicon-user users" %>
+                </li>
+                <li>
+                  <!-- URLにIDがないから -->
+                  <%= link_to "Books", books_path(current_user.id), class: "glyphicon glyphicon-book books" %>
+                </li>
+                <li>
+                  <!--  -->
+                  <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "glyphicon glyphicon-log-out logout" %>
+                </li>
+            <% else %>
+
+                <!-- ログインしていないとき -->
+                <li>
+                  <%= link_to "Home", root_path, class: "glyphicon glyphicon-home home" %>
+                </li>
+                <li>
+                  <%= link_to "About", users_about_path, class: "glyphicon glyphicon-link about" %>
+                </li>
+                <li>
+                  <%= link_to "Sign up", new_user_registration_path, class: "glyphicon glyphicon-edit sign_up" %>
+                </li>
+                <li>
+                  <%= link_to "Log in", user_session_path, class: "glyphicon glyphicon-log-in sign_in" %>
+                </li>
+            <% end %>
+          </ul>
+        </nav>
+        <!-- deviseはデフォルトでフラッシュメッセージを持っているので、ビューページに渡すだけでいい。 -->
+        <% if flash[:notice] %>
+          <div class="font-color">
+          <%= flash[:notice] %>
+          </div>
+        <% end %>
+      <%= yield %>
+      <footer>
+        <div class="copyright">
+          <p>CopyRight Infratop.inc</p>
+        </div>
+      </footer>
+  </body>
+</html>

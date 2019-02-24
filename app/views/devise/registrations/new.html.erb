@@ -1,0 +1,63 @@
+
+<!-- <header>
+  <span>Bookers</span>
+    <nav>
+      <ul class="nav-bar">
+        <li><a>Home</a></li>
+        <li><a>About</a></li>
+        <li><a>Sign up</a></li>
+        <li><a>Log in</a></li>
+      </ul>
+    </nav>
+</header> -->
+
+
+
+<h2>Sign up</h2>
+
+<div>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <div class="font">
+  <%= render "devise/shared/error_messages", resource: resource %>
+  </div>
+
+  <!-- 追加項目 -->
+  <div class="field">
+    <label for="user_name">Name</label><br />
+    <input autofocus="autofocus" class="name" type="text" name="user[name]" id="user_name" />
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password", class: "password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "password_confirm" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up", class: "btn btn-success" %>
+  </div>
+<% end %>
+</div>
+
+<%= render "devise/shared/links" %>
+
+
+
+<!-- <footer>
+  <div class="copyright">
+    <p>CopyRight Infratop.inc</p>
+  </div>
+</footer>
+ -->

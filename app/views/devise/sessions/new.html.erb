@@ -1,0 +1,56 @@
+
+<!-- <header>
+  <span>Bookers</span>
+    <nav>
+      <ul class="nav-bar">
+        <li><a>Home</a></li>
+        <li><a>About</a></li>
+        <li><a>Sign up</a></li>
+        <li><a>Log in</a></li>
+      </ul>
+    </nav>
+</header> -->
+
+
+<h2>Log in</h2>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+
+  <div class="field">
+    <%= f.label :Name %><br />
+    <%= f.text_field :name, class: "name" %>
+  </div>
+
+  <div class="field">
+    <!-- 検証後に変更 -->
+    <%= f.label :password %><br />
+    <%= f.password_field :password, autocomplete: "current-password", class: "password" %>
+  </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class="field">
+      <!-- ベースのまま -->
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit "Log in", class: "btn btn-primary"%>
+  </div>
+<% end %>
+
+
+
+<%= render "devise/shared/links" %>
+
+
+
+<!-- <footer>
+  <div class="copyright">
+    <p>CopyRight Infratop.inc</p>
+  </div>
+</footer> -->
+
+

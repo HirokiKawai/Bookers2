@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-3">
+        <%= render "books/list", user:current_user, book: @book%>
+    </div>
+
+
+
+
+    <div class="col-xs-9">
+      <h2>Users</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td class="image">
+                <!-- テキスト、ブロック要素にリンクをもたせる方法 -->
+                <%= link_to user_path(user.id) do %>
+                  <%= attachment_image_tag user, :image, fallback:"no_image.jpg", class: "img books user_image" %>
+                <% end %>
+              </td>
+              <td><%= user.name %></td>
+              <td><%= link_to "show", user_path(user.id), class: "user_#{user.id}" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
